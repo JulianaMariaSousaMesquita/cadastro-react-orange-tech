@@ -1,5 +1,5 @@
 import { useNavigate  } from "react-router-dom";
-import { MdEmail, MdLock } from 'react-icons/md'
+import { MdAccessible, MdEmail, MdLock, MdPerson } from 'react-icons/md'
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Input';
@@ -10,13 +10,9 @@ import { useForm } from "react-hook-form";
 
 import { Container, Title, Column, TitleLogin, SubtitleLogin, EsqueciText, CriarText, Row, Wrapper } from './styles';
 
-const Login = () => {
+const Register = () => {
 
-    const navigate = useNavigate();
-
-    const handleClickRegister = () => {
-        navigate('/register')
-    }
+    const navigate = useNavigate()
 
     const { control, handleSubmit, formState: { errors  } } = useForm({
         reValidateMode: 'onChange',
@@ -49,23 +45,20 @@ const Login = () => {
             </Column>
             <Column>
                 <Wrapper>
-                <TitleLogin>Faça seu cadastro</TitleLogin>
-                <SubtitleLogin>Faça seu login e make the change._</SubtitleLogin>
+                <TitleLogin>Comece agora grátis</TitleLogin>
+                <SubtitleLogin>Crie sua conta e make the change._</SubtitleLogin>
                 <form onSubmit={handleSubmit(onSubmit)}>
+                    <Input placeholder="Nome completo" leftIcon={<MdPerson />} name="nome"  control={control} />
                     <Input placeholder="E-mail" leftIcon={<MdEmail />} name="email"  control={control} />
                     {errors.email && <span>E-mail é obrigatório</span>}
                     <Input type="password" placeholder="Senha" leftIcon={<MdLock />}  name="senha" control={control} />
                     {errors.senha && <span>Senha é obrigatório</span>}
-                    <Button title="Entrar" variant="secondary" type="submit"/>
+                    <Button title="Cadastrar" variant="secondary" type="submit"/>
                 </form>
-                <Row>
-                    <EsqueciText onClick={handleClickRegister}>Esqueci minha senha</EsqueciText>
-                    <CriarText onClick={handleClickRegister}>Criar Conta</CriarText>
-                </Row>
                 </Wrapper>
             </Column>
         </Container>
     </>)
 }
 
-export { Login }
+export { Register }
